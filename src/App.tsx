@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(() => {
+    const value = localStorage.getItem('count');
+    return value ? Number(value) : 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('count', count.toString());
+  }, [count]);
 
   return (
     <>
@@ -18,9 +25,12 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>
+          <button onClick={() => setCount((count) => count - 1)}>-</button>
+          <p>count is {count}</p>
+          <button onClick={() => setCount((count) => count + 1)}>+</button>
+        </div>
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
