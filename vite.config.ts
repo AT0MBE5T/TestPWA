@@ -13,7 +13,9 @@ export default defineConfig({
         'favicon.ico',
         'apple-touch-icon.png',
         'icon512_maskable.png',
-        'icon512_rounded.png'
+        'icon512_rounded.png',
+        'vite.svg',
+        'react.svg'
       ],
 
       manifest: {
